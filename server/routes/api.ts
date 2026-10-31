@@ -116,6 +116,42 @@ router.get('/auth/me', authenticateToken, (req: AuthRequest, res) => {
   });
 });
 
+router.put('/auth/profile', authenticateToken, (req: AuthRequest, res) => {
+  if (!req.user) return res.status(401).json({ error: 'Unauthenticated' });
+
+  const database = db.getDb();
+  const user = database.users.find(u => u.id === req.user?.id);
+  if (!user) return res.status(404).json({ error: 'User not found' });
+
+  const { name, phone, avatar, currentPassword, newPassword } = req.body;
+
+  if (name) user.name = name;
+  if (phone !== undefined) user.phone = phone;
+  if (avatar !== undefined) user.avatar = avatar;
+
+  if (newPassword) {
+    if (!currentPassword) {
+      return res.status(400).json({ error: 'Current password is required to set a new password.' });
+    }
+    if (user.passwordHash && !comparePassword(currentPassword, user.passwordHash)) {
+      return res.status(400).json({ error: 'Current password is incorrect.' });
+    }
+    user.passwordHash = hashPassword(newPassword);
+  }
+
+  db.save();
+  db.logActivity({
+    userId: user.id,
+    userName: user.name,
+    action: 'Profile Updated',
+    module: 'Auth',
+    details: 'User updated profile details / avatar photo.',
+  });
+
+  const { passwordHash: _, ...userSafe } = user;
+  res.json({ success: true, user: userSafe });
+});
+
 // ==========================================
 // 2. DASHBOARD & ANALYTICS API
 // ==========================================

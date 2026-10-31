@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   LayoutDashboard,
   ShoppingCart,
@@ -17,9 +17,11 @@ import {
   ChevronLeft,
   ChevronRight,
   Store,
+  Camera,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext.js';
 import { useStore } from '../context/StoreContext.js';
+import { AccountSettingsModal } from './AccountSettingsModal.js';
 
 export type ActiveTab =
   | 'dashboard'
@@ -52,6 +54,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 }) => {
   const { user, hasPermission } = useAuth();
   const { settings, notifications, t } = useStore();
+  const [isAccountModalOpen, setIsAccountModalOpen] = useState(false);
 
   const lowStockNotifs = notifications.filter(n => n.type === 'low_stock' && !n.read).length;
 
@@ -219,25 +222,45 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       {/* User Status Footer */}
       <div className="p-3 border-t border-slate-800 bg-slate-950/40">
-        <div className="flex items-center gap-3">
-          <div className="relative">
+        <button
+          type="button"
+          onClick={() => setIsAccountModalOpen(true)}
+          className="w-full flex items-center gap-3 p-1.5 rounded-xl hover:bg-slate-800/60 transition-all text-left group cursor-pointer"
+          title="Account settings & Change profile picture"
+        >
+          <div className="relative group shrink-0">
             <img
               src={user?.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&q=80'}
               alt={user?.name}
-              className="w-9 h-9 rounded-full object-cover border border-purple-500/50"
+              className="w-9 h-9 rounded-full object-cover border-2 border-purple-500/50 group-hover:border-purple-400 group-hover:scale-105 transition-all shadow-md"
             />
-            <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-slate-900" />
+            <div className="absolute inset-0 rounded-full bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+              <Camera className="w-3.5 h-3.5 text-white drop-shadow-md" />
+            </div>
+            <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-slate-900 group-hover:ring-purple-900" />
           </div>
           {!collapsed && (
-            <div className="flex flex-col truncate">
-              <span className="text-xs font-semibold text-white truncate">{user?.name}</span>
+            <div className="flex flex-col truncate flex-1 min-w-0">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-semibold text-white group-hover:text-purple-300 transition-colors truncate">
+                  {user?.name}
+                </span>
+                <span className="text-[10px] text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                  Edit
+                </span>
+              </div>
               <span className="text-[10px] font-medium text-purple-400 uppercase tracking-wider">
                 {user?.role}
               </span>
             </div>
           )}
-        </div>
+        </button>
       </div>
+
+      <AccountSettingsModal
+        isOpen={isAccountModalOpen}
+        onClose={() => setIsAccountModalOpen(false)}
+      />
     </aside>
   );
 };

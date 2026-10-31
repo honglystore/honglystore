@@ -14,6 +14,7 @@ import { useAuth } from '../context/AuthContext.js';
 import { useStore } from '../context/StoreContext.js';
 import { RoleName } from '../types/index.js';
 import { ActiveTab } from './Sidebar.js';
+import { AccountSettingsModal } from './AccountSettingsModal.js';
 
 interface NavbarProps {
   onSearchSelect?: (tab: ActiveTab) => void;
@@ -37,6 +38,7 @@ export const Navbar: React.FC<NavbarProps> = ({ setActiveTab }) => {
 
   const [notifOpen, setNotifOpen] = useState(false);
   const [roleMenuOpen, setRoleMenuOpen] = useState(false);
+  const [accountModalOpen, setAccountModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
   const notifRef = useRef<HTMLDivElement>(null);
@@ -313,15 +315,30 @@ export const Navbar: React.FC<NavbarProps> = ({ setActiveTab }) => {
           )}
         </div>
 
-        {/* User Avatar */}
+        {/* User Avatar & Quick Account Settings */}
         <div className="flex items-center gap-2 pl-2 border-l border-slate-200 dark:border-slate-800">
-          <img
-            src={user?.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&q=80'}
-            alt={user?.name}
-            className="w-8 h-8 rounded-full object-cover border border-purple-500/40"
-          />
+          <button
+            type="button"
+            onClick={() => setAccountModalOpen(true)}
+            className="flex items-center gap-2 p-1 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors group cursor-pointer"
+            title="Account Settings & Profile Picture"
+          >
+            <img
+              src={user?.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&q=80'}
+              alt={user?.name}
+              className="w-8 h-8 rounded-full object-cover border border-purple-500/40 group-hover:border-purple-500 group-hover:scale-105 transition-all shadow-xs"
+            />
+            <span className="hidden lg:inline text-xs font-semibold text-slate-700 dark:text-slate-200 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+              {user?.name?.split(' ')[0]}
+            </span>
+          </button>
         </div>
       </div>
+
+      <AccountSettingsModal
+        isOpen={accountModalOpen}
+        onClose={() => setAccountModalOpen(false)}
+      />
     </header>
   );
 };

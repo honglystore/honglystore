@@ -12,6 +12,7 @@ interface AuthContextType {
   logout: () => void;
   switchRole: (role: RoleName) => Promise<void>;
   hasPermission: (permissionCode: string) => boolean;
+  updateProfile: (data: { name?: string; phone?: string; avatar?: string; currentPassword?: string; newPassword?: string }) => Promise<void>;
   isSuperAdmin: boolean;
   isAdmin: boolean;
   isManager: boolean;
@@ -102,6 +103,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
+  const updateProfile = async (data: { name?: string; phone?: string; avatar?: string; currentPassword?: string; newPassword?: string }) => {
+    const res = await api.updateProfile(data);
+    if (res.user) {
+      setUser(res.user);
+    }
+  };
+
   const hasPermission = (permissionCode: string) => {
     if (!user) return false;
     if (user.role === 'Super Admin') return true;
@@ -120,6 +128,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         logout,
         switchRole,
         hasPermission,
+        updateProfile,
         isSuperAdmin: user?.role === 'Super Admin',
         isAdmin: user?.role === 'Admin' || user?.role === 'Super Admin',
         isManager: user?.role === 'Manager' || user?.role === 'Admin' || user?.role === 'Super Admin',
