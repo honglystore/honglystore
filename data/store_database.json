@@ -1,0 +1,942 @@
+{
+  "users": [
+    {
+      "id": "usr_superadmin",
+      "name": "Alexander Wright",
+      "email": "admin@nexusstore.com",
+      "passwordHash": "$2b$10$b44xyBOs52YmWCpkJD99Hu7yW2W1z6v9P.DBplyD04suK4gujFUSG",
+      "role": "Super Admin",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&q=80",
+      "phone": "+1 (555) 901-2233",
+      "status": "active",
+      "createdAt": "2026-01-01T00:00:00Z",
+      "lastLoginAt": "2026-10-31T14:53:26.725Z"
+    },
+    {
+      "id": "usr_manager",
+      "name": "Alex Rivera",
+      "email": "manager@nexusstore.com",
+      "passwordHash": "$2b$10$/RK9Oqdoe/jDinqEbOcHg.J2SK/m6ypoWsJsjjfDsgmJSaOjrZ2Bi",
+      "role": "Manager",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80",
+      "phone": "+1 (555) 812-4455",
+      "status": "active",
+      "createdAt": "2026-01-05T00:00:00Z",
+      "lastLoginAt": "2026-10-30T18:00:00Z"
+    },
+    {
+      "id": "usr_cashier",
+      "name": "Emma Watson",
+      "email": "cashier@nexusstore.com",
+      "passwordHash": "$2b$10$8YwF14EOEPtQ7AD770RL7.fUq3JEw/7iiMb23rOmjwgmLgTOjhfDq",
+      "role": "Cashier",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&q=80",
+      "phone": "+1 (555) 744-8899",
+      "status": "active",
+      "createdAt": "2026-01-15T00:00:00Z",
+      "lastLoginAt": "2026-10-31T06:00:00Z"
+    },
+    {
+      "id": "usr_inventory",
+      "name": "Lucas Vance",
+      "email": "inventory@nexusstore.com",
+      "passwordHash": "$2b$10$Iy99J0hHq3oJYGSMeEvBg.0ZPhXT1SPZATGc78w78PHfwURE9/aJi",
+      "role": "Inventory Staff",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&q=80",
+      "phone": "+1 (555) 321-7788",
+      "status": "active",
+      "createdAt": "2026-01-15T00:00:00Z",
+      "lastLoginAt": "2026-10-29T09:30:00Z"
+    }
+  ],
+  "roles": [
+    {
+      "id": "role_super_admin",
+      "name": "Super Admin",
+      "description": "Complete unrestricted access to all modules and configurations",
+      "permissions": [
+        "dashboard.view",
+        "pos.access",
+        "products.view",
+        "products.manage",
+        "categories.manage",
+        "inventory.view",
+        "inventory.adjust",
+        "orders.view",
+        "orders.manage",
+        "customers.manage",
+        "suppliers.manage",
+        "purchases.manage",
+        "expenses.manage",
+        "reports.view",
+        "users.manage",
+        "settings.manage"
+      ]
+    },
+    {
+      "id": "role_admin",
+      "name": "Admin",
+      "description": "Full store operations management excluding sensitive server config",
+      "permissions": [
+        "dashboard.view",
+        "pos.access",
+        "products.view",
+        "products.manage",
+        "categories.manage",
+        "inventory.view",
+        "inventory.adjust",
+        "orders.view",
+        "orders.manage",
+        "customers.manage",
+        "suppliers.manage",
+        "purchases.manage",
+        "expenses.manage",
+        "reports.view",
+        "users.manage"
+      ]
+    },
+    {
+      "id": "role_manager",
+      "name": "Manager",
+      "description": "Supervise store floor, inventory, reports, and staff operations",
+      "permissions": [
+        "dashboard.view",
+        "pos.access",
+        "products.view",
+        "products.manage",
+        "categories.manage",
+        "inventory.view",
+        "inventory.adjust",
+        "orders.view",
+        "orders.manage",
+        "customers.manage",
+        "suppliers.manage",
+        "purchases.manage",
+        "expenses.manage",
+        "reports.view"
+      ]
+    },
+    {
+      "id": "role_cashier",
+      "name": "Cashier",
+      "description": "Front-desk POS checkout, order lookups, and customer loyalty",
+      "permissions": [
+        "pos.access",
+        "products.view",
+        "orders.view",
+        "customers.manage"
+      ]
+    },
+    {
+      "id": "role_inventory",
+      "name": "Inventory Staff",
+      "description": "Warehouse stock audits, receiving goods, and catalog updates",
+      "permissions": [
+        "products.view",
+        "products.manage",
+        "categories.manage",
+        "inventory.view",
+        "inventory.adjust",
+        "suppliers.manage",
+        "purchases.manage"
+      ]
+    }
+  ],
+  "permissions": [
+    {
+      "id": "perm_1",
+      "code": "dashboard.view",
+      "module": "Dashboard",
+      "action": "view",
+      "description": "View dashboard and KPI statistics"
+    },
+    {
+      "id": "perm_2",
+      "code": "pos.access",
+      "module": "POS",
+      "action": "access",
+      "description": "Process sales and print receipts in POS"
+    },
+    {
+      "id": "perm_3",
+      "code": "products.view",
+      "module": "Products",
+      "action": "view",
+      "description": "View product catalog"
+    },
+    {
+      "id": "perm_4",
+      "code": "products.manage",
+      "module": "Products",
+      "action": "manage",
+      "description": "Create, edit, and delete products"
+    },
+    {
+      "id": "perm_5",
+      "code": "categories.manage",
+      "module": "Categories",
+      "action": "manage",
+      "description": "Manage product categories"
+    },
+    {
+      "id": "perm_6",
+      "code": "inventory.view",
+      "module": "Inventory",
+      "action": "view",
+      "description": "View stock levels and valuation"
+    },
+    {
+      "id": "perm_7",
+      "code": "inventory.adjust",
+      "module": "Inventory",
+      "action": "adjust",
+      "description": "Perform stock in, out, and adjustments"
+    },
+    {
+      "id": "perm_8",
+      "code": "orders.view",
+      "module": "Orders",
+      "action": "view",
+      "description": "View customer orders"
+    },
+    {
+      "id": "perm_9",
+      "code": "orders.manage",
+      "module": "Orders",
+      "action": "manage",
+      "description": "Edit, refund, and cancel orders"
+    },
+    {
+      "id": "perm_10",
+      "code": "customers.manage",
+      "module": "Customers",
+      "action": "manage",
+      "description": "Manage CRM customer records"
+    },
+    {
+      "id": "perm_11",
+      "code": "suppliers.manage",
+      "module": "Suppliers",
+      "action": "manage",
+      "description": "Manage supplier information"
+    },
+    {
+      "id": "perm_12",
+      "code": "purchases.manage",
+      "module": "Purchases",
+      "action": "manage",
+      "description": "Create and receive purchase orders"
+    },
+    {
+      "id": "perm_13",
+      "code": "expenses.manage",
+      "module": "Expenses",
+      "action": "manage",
+      "description": "Track store operating expenses"
+    },
+    {
+      "id": "perm_14",
+      "code": "reports.view",
+      "module": "Reports",
+      "action": "view",
+      "description": "Access advanced analytics and financial reports"
+    },
+    {
+      "id": "perm_15",
+      "code": "users.manage",
+      "module": "Users",
+      "action": "manage",
+      "description": "Manage user accounts and roles"
+    },
+    {
+      "id": "perm_16",
+      "code": "settings.manage",
+      "module": "Settings",
+      "action": "manage",
+      "description": "Configure store settings and backups"
+    }
+  ],
+  "categories": [
+    {
+      "id": "cat_electronics",
+      "name": "Electronics & Audio",
+      "description": "Gadgets, audio accessories, and premium peripherals",
+      "imageUrl": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&q=80",
+      "createdAt": "2026-01-10T08:00:00Z"
+    },
+    {
+      "id": "cat_groceries",
+      "name": "Artisan Groceries",
+      "description": "Organic pantry staples, healthy snacks, and condiments",
+      "imageUrl": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=400&q=80",
+      "createdAt": "2026-01-10T08:00:00Z"
+    },
+    {
+      "id": "cat_beverages",
+      "name": "Specialty Beverages",
+      "description": "Cold brew, organic teas, kombucha, and craft sodas",
+      "imageUrl": "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=400&q=80",
+      "createdAt": "2026-01-10T08:00:00Z"
+    },
+    {
+      "id": "cat_apparel",
+      "name": "Apparel & Accessories",
+      "description": "Modern minimalist clothing and everyday carry items",
+      "imageUrl": "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=400&q=80",
+      "createdAt": "2026-01-10T08:00:00Z"
+    },
+    {
+      "id": "cat_home",
+      "name": "Home & Kitchen",
+      "description": "Aesthetic kitchenware, tumblers, and home fragrances",
+      "imageUrl": "https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?w=400&q=80",
+      "createdAt": "2026-01-10T08:00:00Z"
+    },
+    {
+      "id": "cat_beauty",
+      "name": "Health & Personal Care",
+      "description": "Natural skincare, botanical soaps, and grooming goods",
+      "imageUrl": "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&q=80",
+      "createdAt": "2026-01-10T08:00:00Z"
+    }
+  ],
+  "products": [
+    {
+      "id": "prod_1",
+      "name": "Sony WH-1000XM5 Noise Canceling Headphones",
+      "sku": "SNY-WH1005-BLK",
+      "barcode": "880912345001",
+      "categoryId": "cat_electronics",
+      "categoryName": "Electronics & Audio",
+      "brand": "Sony",
+      "purchasePrice": 280,
+      "sellingPrice": 399,
+      "stockQuantity": 18,
+      "minStockAlert": 5,
+      "description": "Industry-leading noise canceling wireless headphones with crystal-clear hands-free calling.",
+      "status": "in_stock",
+      "imageUrl": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&q=80",
+      "createdAt": "2026-01-15T10:00:00Z",
+      "updatedAt": "2026-10-25T14:30:00Z"
+    },
+    {
+      "id": "prod_2",
+      "name": "Keychron Q1 Pro Wireless Mechanical Keyboard",
+      "sku": "KYC-Q1PRO-RGB",
+      "barcode": "880912345002",
+      "categoryId": "cat_electronics",
+      "categoryName": "Electronics & Audio",
+      "brand": "Keychron",
+      "purchasePrice": 120,
+      "sellingPrice": 189,
+      "stockQuantity": 3,
+      "minStockAlert": 6,
+      "description": "75% layout QMK/VIA custom wireless mechanical keyboard with double-gasket design.",
+      "status": "low_stock",
+      "imageUrl": "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500&q=80",
+      "createdAt": "2026-01-15T10:00:00Z",
+      "updatedAt": "2026-10-28T11:20:00Z"
+    },
+    {
+      "id": "prod_3",
+      "name": "Logitech MX Master 3S Ergonomic Mouse",
+      "sku": "LOG-MX3S-GRY",
+      "barcode": "880912345003",
+      "categoryId": "cat_electronics",
+      "categoryName": "Electronics & Audio",
+      "brand": "Logitech",
+      "purchasePrice": 65,
+      "sellingPrice": 99.99,
+      "stockQuantity": 24,
+      "minStockAlert": 8,
+      "description": "Quiet clicks and 8K DPI track-on-glass sensor for fast, fluid productivity.",
+      "status": "in_stock",
+      "imageUrl": "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=500&q=80",
+      "createdAt": "2026-02-01T09:00:00Z",
+      "updatedAt": "2026-10-20T16:00:00Z"
+    },
+    {
+      "id": "prod_4",
+      "name": "Uji Ceremonial Grade Organic Matcha Powder (100g)",
+      "sku": "GRC-MTC-100G",
+      "barcode": "880912345004",
+      "categoryId": "cat_beverages",
+      "categoryName": "Specialty Beverages",
+      "brand": "Kyoto Botanicals",
+      "purchasePrice": 14.5,
+      "sellingPrice": 28,
+      "stockQuantity": 4,
+      "minStockAlert": 8,
+      "description": "First harvest shade-grown matcha powder from Kyoto, Japan with smooth umami notes.",
+      "status": "low_stock",
+      "expirationDate": "2027-08-31",
+      "imageUrl": "https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=500&q=80",
+      "createdAt": "2026-02-10T11:00:00Z",
+      "updatedAt": "2026-10-30T09:15:00Z"
+    },
+    {
+      "id": "prod_5",
+      "name": "Ethiopia Yirgacheffe Single Origin Coffee Beans (500g)",
+      "sku": "BVG-COF-ETH500",
+      "barcode": "880912345005",
+      "categoryId": "cat_beverages",
+      "categoryName": "Specialty Beverages",
+      "brand": "Artisan Roast Co.",
+      "purchasePrice": 11,
+      "sellingPrice": 22.5,
+      "stockQuantity": 42,
+      "minStockAlert": 10,
+      "description": "Light roast specialty beans with floral jasmine aroma and bright citrus bergamot notes.",
+      "status": "in_stock",
+      "expirationDate": "2027-04-15",
+      "imageUrl": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=500&q=80",
+      "createdAt": "2026-02-15T14:00:00Z",
+      "updatedAt": "2026-10-29T10:00:00Z"
+    },
+    {
+      "id": "prod_6",
+      "name": "Organic Raw Wildflower Honey Jar (350g)",
+      "sku": "GRC-HNY-350G",
+      "barcode": "880912345006",
+      "categoryId": "cat_groceries",
+      "categoryName": "Artisan Groceries",
+      "brand": "Golden Meadow",
+      "purchasePrice": 6.8,
+      "sellingPrice": 14,
+      "stockQuantity": 36,
+      "minStockAlert": 10,
+      "description": "100% pure unfiltered raw wildflower honey harvested from sustainable ethical apiaries.",
+      "status": "in_stock",
+      "expirationDate": "2028-12-31",
+      "imageUrl": "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=500&q=80",
+      "createdAt": "2026-03-01T08:00:00Z",
+      "updatedAt": "2026-10-22T13:45:00Z"
+    },
+    {
+      "id": "prod_7",
+      "name": "Klean Kanteen Insulated Thermal Tumbler (20oz)",
+      "sku": "HM-KLEAN-20OZ",
+      "barcode": "880912345007",
+      "categoryId": "cat_home",
+      "categoryName": "Home & Kitchen",
+      "brand": "Klean Kanteen",
+      "purchasePrice": 18,
+      "sellingPrice": 34.99,
+      "stockQuantity": 28,
+      "minStockAlert": 8,
+      "description": "Climate Lock double-wall vacuum insulation keeps drinks hot for 14 hours and iced for 47 hours.",
+      "status": "in_stock",
+      "imageUrl": "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=500&q=80",
+      "createdAt": "2026-03-05T12:00:00Z",
+      "updatedAt": "2026-10-20T17:00:00Z"
+    },
+    {
+      "id": "prod_8",
+      "name": "Minimalist Heavyweight Cotton Tee - Washed Navy",
+      "sku": "APP-TEE-NVY-L",
+      "barcode": "880912345008",
+      "categoryId": "cat_apparel",
+      "categoryName": "Apparel & Accessories",
+      "brand": "Monolith Goods",
+      "purchasePrice": 12,
+      "sellingPrice": 28,
+      "stockQuantity": 19,
+      "minStockAlert": 5,
+      "description": "280 GSM combed organic heavyweight cotton with boxy relaxed silhouette.",
+      "status": "in_stock",
+      "imageUrl": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500&q=80",
+      "createdAt": "2026-03-12T09:30:00Z",
+      "updatedAt": "2026-10-24T15:20:00Z"
+    },
+    {
+      "id": "prod_9",
+      "name": "Botanical Cedar & Bergamot Hand Soap (500ml)",
+      "sku": "BTY-SOAP-500ML",
+      "barcode": "880912345009",
+      "categoryId": "cat_beauty",
+      "categoryName": "Health & Personal Care",
+      "brand": "Aura Elements",
+      "purchasePrice": 8.5,
+      "sellingPrice": 19.5,
+      "stockQuantity": 31,
+      "minStockAlert": 8,
+      "description": "Gentle plant-derived cleansing formula infused with nourishing cedarwood and fresh bergamot.",
+      "status": "in_stock",
+      "imageUrl": "https://images.unsplash.com/photo-1608248597359-56334a179247?w=500&q=80",
+      "createdAt": "2026-03-20T15:00:00Z",
+      "updatedAt": "2026-10-18T11:00:00Z"
+    },
+    {
+      "id": "prod_10",
+      "name": "Pour-Over Ceramic Coffee Dripper & Glass Server Set",
+      "sku": "HM-POUR-SET",
+      "barcode": "880912345010",
+      "categoryId": "cat_home",
+      "categoryName": "Home & Kitchen",
+      "brand": "Hario",
+      "purchasePrice": 24,
+      "sellingPrice": 48,
+      "stockQuantity": 15,
+      "minStockAlert": 4,
+      "description": "Artisanal matte ceramic V-cone dripper with 600ml borosilicate glass decanter server.",
+      "status": "in_stock",
+      "imageUrl": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500&q=80",
+      "createdAt": "2026-04-01T10:00:00Z",
+      "updatedAt": "2026-10-27T13:10:00Z"
+    },
+    {
+      "id": "prod_11",
+      "name": "Apple 20W USB-C Fast Power Adapter",
+      "sku": "APL-20W-ADPT",
+      "barcode": "880912345011",
+      "categoryId": "cat_electronics",
+      "categoryName": "Electronics & Audio",
+      "brand": "Apple",
+      "purchasePrice": 12.5,
+      "sellingPrice": 19,
+      "stockQuantity": 50,
+      "minStockAlert": 15,
+      "description": "Fast, efficient charging at home, in the office, or on the go for mobile devices.",
+      "status": "in_stock",
+      "imageUrl": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=500&q=80",
+      "createdAt": "2026-04-10T08:00:00Z",
+      "updatedAt": "2026-10-31T06:00:00Z"
+    },
+    {
+      "id": "prod_12",
+      "name": "Organic Extra Virgin Olive Oil PDO Kalamata (750ml)",
+      "sku": "GRC-OLV-750ML",
+      "barcode": "880912345012",
+      "categoryId": "cat_groceries",
+      "categoryName": "Artisan Groceries",
+      "brand": "Olympian Groves",
+      "purchasePrice": 13,
+      "sellingPrice": 26.5,
+      "stockQuantity": 22,
+      "minStockAlert": 6,
+      "description": "Cold-extracted single estate Greek olive oil with fruity aroma and peppery finish.",
+      "status": "in_stock",
+      "expirationDate": "2028-06-30",
+      "imageUrl": "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=500&q=80",
+      "createdAt": "2026-04-15T11:00:00Z",
+      "updatedAt": "2026-10-25T10:00:00Z"
+    }
+  ],
+  "stock_movements": [
+    {
+      "id": "sm_1",
+      "productId": "prod_1",
+      "productName": "Sony WH-1000XM5 Noise Canceling Headphones",
+      "type": "in",
+      "quantity": 10,
+      "previousStock": 9,
+      "newStock": 19,
+      "date": "2026-10-14T15:00:00Z",
+      "userId": "usr_inventory",
+      "userName": "Lucas Vance",
+      "reason": "PO-2026-1001 purchase received",
+      "referenceId": "po_1001"
+    },
+    {
+      "id": "sm_2",
+      "productId": "prod_1",
+      "productName": "Sony WH-1000XM5 Noise Canceling Headphones",
+      "type": "out",
+      "quantity": 1,
+      "previousStock": 19,
+      "newStock": 18,
+      "date": "2026-10-29T14:15:00Z",
+      "userId": "usr_cashier",
+      "userName": "Emma Watson",
+      "reason": "POS Sale ORD-2026-005001",
+      "referenceId": "ord_5001"
+    }
+  ],
+  "customers": [
+    {
+      "id": "cust_1",
+      "name": "Sarah Chen",
+      "phone": "+1 (555) 234-5678",
+      "email": "sarah.chen@example.com",
+      "address": "452 Pine Valley Way, Tech District",
+      "totalSpending": 1420.5,
+      "loyaltyPoints": 380,
+      "membershipLevel": "Gold",
+      "createdAt": "2026-01-20T10:00:00Z"
+    },
+    {
+      "id": "cust_2",
+      "name": "Michael Vorn",
+      "phone": "+855 12 345 678",
+      "email": "vorn.michael@example.com",
+      "address": "St 214, BKK1, Phnom Penh, Cambodia",
+      "totalSpending": 2850,
+      "loyaltyPoints": 720,
+      "membershipLevel": "Platinum",
+      "createdAt": "2026-02-12T14:30:00Z"
+    },
+    {
+      "id": "cust_3",
+      "name": "Elena Rostova",
+      "phone": "+1 (555) 890-1234",
+      "email": "elena.rostova@example.com",
+      "address": "88 Riverside Blvd, Apt 4B",
+      "totalSpending": 640,
+      "loyaltyPoints": 140,
+      "membershipLevel": "Silver",
+      "createdAt": "2026-03-05T09:15:00Z"
+    },
+    {
+      "id": "cust_4",
+      "name": "Sokha Meng",
+      "phone": "+855 98 765 432",
+      "email": "sokha.meng@example.com",
+      "address": "Toul Kork, Phnom Penh, Cambodia",
+      "totalSpending": 185,
+      "loyaltyPoints": 35,
+      "membershipLevel": "Bronze",
+      "createdAt": "2026-05-18T16:00:00Z"
+    }
+  ],
+  "suppliers": [
+    {
+      "id": "sup_1",
+      "name": "Global Tech Wholesale Ltd",
+      "contactPerson": "David Miller",
+      "phone": "+1 (800) 555-0199",
+      "email": "orders@globaltechwholesalers.com",
+      "address": "100 Industrial Pkwy, Logistics Hub, CA",
+      "outstandingBalance": 1200,
+      "createdAt": "2026-01-05T08:00:00Z"
+    },
+    {
+      "id": "sup_2",
+      "name": "Kyoto Heritage Teas & Agro",
+      "contactPerson": "Kenji Takahashi",
+      "phone": "+81 75 555 0122",
+      "email": "kenji@kyoto-heritage.jp",
+      "address": "42 Uji Riverside, Kyoto, Japan",
+      "outstandingBalance": 0,
+      "createdAt": "2026-01-15T09:00:00Z"
+    },
+    {
+      "id": "sup_3",
+      "name": "Artisan Gourmet Distributors",
+      "contactPerson": "Claire Laurent",
+      "phone": "+1 (888) 420-9900",
+      "email": "claire@artisangourmet.com",
+      "address": "74 Harbor View Drive, Seattle, WA",
+      "outstandingBalance": 450,
+      "createdAt": "2026-02-01T11:00:00Z"
+    }
+  ],
+  "purchases": [
+    {
+      "id": "po_1001",
+      "purchaseNumber": "PO-2026-1001",
+      "supplierId": "sup_1",
+      "supplierName": "Global Tech Wholesale Ltd",
+      "totalCost": 2800,
+      "paymentStatus": "paid",
+      "status": "received",
+      "date": "2026-10-10T10:00:00Z",
+      "receivedDate": "2026-10-14T15:00:00Z",
+      "notes": "Restock Sony WH-1000XM5 and fast chargers",
+      "items": [
+        {
+          "productId": "prod_1",
+          "productName": "Sony WH-1000XM5 Noise Canceling Headphones",
+          "sku": "SNY-WH1005-BLK",
+          "quantity": 10,
+          "purchasePrice": 280,
+          "totalCost": 2800
+        }
+      ]
+    },
+    {
+      "id": "po_1002",
+      "purchaseNumber": "PO-2026-1002",
+      "supplierId": "sup_2",
+      "supplierName": "Kyoto Heritage Teas & Agro",
+      "totalCost": 725,
+      "paymentStatus": "paid",
+      "status": "received",
+      "date": "2026-10-18T09:00:00Z",
+      "receivedDate": "2026-10-22T11:30:00Z",
+      "notes": "Quarterly Japanese ceremonial matcha batch",
+      "items": [
+        {
+          "productId": "prod_4",
+          "productName": "Uji Ceremonial Grade Organic Matcha Powder (100g)",
+          "sku": "GRC-MTC-100G",
+          "quantity": 50,
+          "purchasePrice": 14.5,
+          "totalCost": 725
+        }
+      ]
+    }
+  ],
+  "orders": [
+    {
+      "id": "ord_5001",
+      "orderNumber": "ORD-2026-005001",
+      "customerId": "cust_1",
+      "customerName": "Sarah Chen",
+      "subtotal": 498.99,
+      "discount": 25,
+      "tax": 47.4,
+      "grandTotal": 521.39,
+      "paymentMethod": "card",
+      "paymentStatus": "completed",
+      "status": "completed",
+      "cashierId": "usr_cashier",
+      "cashierName": "Emma Watson",
+      "date": "2026-10-29T14:15:00Z",
+      "currency": "USD",
+      "exchangeRate": 4100,
+      "items": [
+        {
+          "productId": "prod_1",
+          "productName": "Sony WH-1000XM5 Noise Canceling Headphones",
+          "sku": "SNY-WH1005-BLK",
+          "quantity": 1,
+          "unitPrice": 399,
+          "subtotal": 399,
+          "discount": 0,
+          "total": 399
+        },
+        {
+          "productId": "prod_3",
+          "productName": "Logitech MX Master 3S Ergonomic Mouse",
+          "sku": "LOG-MX3S-GRY",
+          "quantity": 1,
+          "unitPrice": 99.99,
+          "subtotal": 99.99,
+          "discount": 25,
+          "total": 74.99
+        }
+      ]
+    },
+    {
+      "id": "ord_5002",
+      "orderNumber": "ORD-2026-005002",
+      "customerId": "cust_2",
+      "customerName": "Michael Vorn",
+      "subtotal": 78.5,
+      "discount": 0,
+      "tax": 7.85,
+      "grandTotal": 86.35,
+      "paymentMethod": "qr",
+      "paymentStatus": "completed",
+      "status": "completed",
+      "cashierId": "usr_cashier",
+      "cashierName": "Emma Watson",
+      "date": "2026-10-30T10:45:00Z",
+      "currency": "USD",
+      "exchangeRate": 4100,
+      "items": [
+        {
+          "productId": "prod_4",
+          "productName": "Uji Ceremonial Grade Organic Matcha Powder (100g)",
+          "sku": "GRC-MTC-100G",
+          "quantity": 2,
+          "unitPrice": 28,
+          "subtotal": 56,
+          "discount": 0,
+          "total": 56
+        },
+        {
+          "productId": "prod_5",
+          "productName": "Ethiopia Yirgacheffe Single Origin Coffee Beans (500g)",
+          "sku": "BVG-COF-ETH500",
+          "quantity": 1,
+          "unitPrice": 22.5,
+          "subtotal": 22.5,
+          "discount": 0,
+          "total": 22.5
+        }
+      ]
+    },
+    {
+      "id": "ord_5003",
+      "orderNumber": "ORD-2026-005003",
+      "customerId": "cust_4",
+      "customerName": "Sokha Meng",
+      "subtotal": 53.99,
+      "discount": 5,
+      "tax": 4.9,
+      "grandTotal": 53.89,
+      "paymentMethod": "cash",
+      "paymentStatus": "completed",
+      "status": "completed",
+      "cashierId": "usr_cashier",
+      "cashierName": "Emma Watson",
+      "date": "2026-10-31T06:30:00Z",
+      "currency": "USD",
+      "exchangeRate": 4100,
+      "items": [
+        {
+          "productId": "prod_7",
+          "productName": "Klean Kanteen Insulated Thermal Tumbler (20oz)",
+          "sku": "HM-KLEAN-20OZ",
+          "quantity": 1,
+          "unitPrice": 34.99,
+          "subtotal": 34.99,
+          "discount": 5,
+          "total": 29.99
+        },
+        {
+          "productId": "prod_11",
+          "productName": "Apple 20W USB-C Fast Power Adapter",
+          "sku": "APL-20W-ADPT",
+          "quantity": 1,
+          "unitPrice": 19,
+          "subtotal": 19,
+          "discount": 0,
+          "total": 19
+        }
+      ]
+    }
+  ],
+  "expenses": [
+    {
+      "id": "exp_1",
+      "category": "Rent",
+      "description": "Retail store main showroom monthly rent",
+      "amount": 1800,
+      "paymentMethod": "bank_transfer",
+      "date": "2026-10-01T08:00:00Z",
+      "recordedBy": "Alex Rivera"
+    },
+    {
+      "id": "exp_2",
+      "category": "Utilities",
+      "description": "High-speed fiber internet and electrical utility billing",
+      "amount": 245.5,
+      "paymentMethod": "bank_transfer",
+      "date": "2026-10-05T10:00:00Z",
+      "recordedBy": "Alex Rivera"
+    },
+    {
+      "id": "exp_3",
+      "category": "Packaging",
+      "description": "Eco-friendly kraft shopping bags, thermal receipt rolls, and stickers",
+      "amount": 190,
+      "paymentMethod": "card",
+      "date": "2026-10-12T14:00:00Z",
+      "recordedBy": "Lucas Vance"
+    },
+    {
+      "id": "exp_4",
+      "category": "Marketing",
+      "description": "Local social media promotions and seasonal autumn campaigns",
+      "amount": 320,
+      "paymentMethod": "card",
+      "date": "2026-10-15T16:00:00Z",
+      "recordedBy": "Alex Rivera"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "notif_1",
+      "title": "Low Stock Alert",
+      "message": "Keychron Q1 Pro Wireless Mechanical Keyboard is low in stock (3 units left, min threshold: 6).",
+      "type": "low_stock",
+      "read": false,
+      "date": "2026-10-28T11:20:00Z",
+      "link": "/inventory"
+    },
+    {
+      "id": "notif_2",
+      "title": "Low Stock Alert",
+      "message": "Uji Ceremonial Grade Organic Matcha Powder (100g) is low in stock (4 units left, min threshold: 8).",
+      "type": "low_stock",
+      "read": false,
+      "date": "2026-10-30T09:15:00Z",
+      "link": "/inventory"
+    },
+    {
+      "id": "notif_3",
+      "title": "New VIP Customer",
+      "message": "Michael Vorn has reached Platinum Membership tier with $2,850+ in store purchases.",
+      "type": "customer",
+      "read": true,
+      "date": "2026-10-30T11:00:00Z",
+      "link": "/customers"
+    },
+    {
+      "id": "notif_4",
+      "title": "New POS Sale Completed",
+      "message": "Order ORD-2026-005003 ($53.89) was processed via Cash by Emma Watson.",
+      "type": "order",
+      "read": true,
+      "date": "2026-10-31T06:30:00Z",
+      "link": "/orders"
+    }
+  ],
+  "settings": {
+    "storeName": "ហុងលី លក់សម្ភារៈបុណ្យ",
+    "storeTagline": "Modern POS, Inventory & Store Intelligence",
+    "logoUrl": "https://images.unsplash.com/photo-1542838132-92c53300491e?w=100&q=80",
+    "address": "Building 14, Silicon Boulevard, Central District",
+    "phone": "+1 (800) 888-NEXUS",
+    "email": "contact@nexusstore.io",
+    "website": "https://nexusstore.io",
+    "currency": "USD",
+    "khrExchangeRate": 4100,
+    "taxPercentage": 10,
+    "invoicePrefix": "INV-2026-",
+    "receiptFooter": "Thank you for shopping with NexusStore! Keep receipt for 14-day returns.",
+    "enableLoyalty": true,
+    "theme": "light",
+    "language": "en",
+    "backupAuto": true
+  },
+  "activity_logs": [
+    {
+      "userId": "usr_superadmin",
+      "userName": "Alexander Wright",
+      "action": "User Logged In",
+      "module": "Auth",
+      "details": "User admin@nexusstore.com signed in successfully.",
+      "id": "log_1793458406726_83si",
+      "timestamp": "2026-10-31T14:53:26.726Z"
+    },
+    {
+      "userId": "usr_superadmin",
+      "userName": "Alexander Wright",
+      "action": "User Logged In",
+      "module": "Auth",
+      "details": "User admin@nexusstore.com signed in successfully.",
+      "id": "log_1793458402079_vkri",
+      "timestamp": "2026-10-31T14:53:22.079Z"
+    },
+    {
+      "id": "log_1",
+      "userId": "usr_superadmin",
+      "userName": "Alexander Wright",
+      "action": "System Bootstrapped",
+      "module": "System",
+      "details": "Database schema verified and operational parameters loaded.",
+      "timestamp": "2026-10-20T08:00:00Z"
+    },
+    {
+      "id": "log_2",
+      "userId": "usr_cashier",
+      "userName": "Emma Watson",
+      "action": "Order Processed",
+      "module": "POS",
+      "details": "Completed Order ORD-2026-005001 for customer Sarah Chen ($521.39).",
+      "timestamp": "2026-10-29T14:15:00Z"
+    },
+    {
+      "id": "log_3",
+      "userId": "usr_inventory",
+      "userName": "Lucas Vance",
+      "action": "Purchase Order Received",
+      "module": "Purchases",
+      "details": "Received PO-2026-1002 from Kyoto Heritage Teas & Agro (+50 matcha units).",
+      "timestamp": "2026-10-22T11:30:00Z"
+    }
+  ]
+}

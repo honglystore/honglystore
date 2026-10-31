@@ -1,0 +1,8 @@
+{
+  "name": "NexusStore POS & ERP - Professional Store Management System",
+  "description": "Full-stack enterprise store management system featuring modern POS, dynamic analytics, inventory control, orders, supplier purchases, CRM, multi-role security, USD/KHR currencies, and audit logs.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
