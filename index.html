@@ -12,6 +12,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+      // Automatic fail-safe for GitHub Pages when repository root is deployed directly
+      (function() {
+        if (window.location.hostname.endsWith('github.io') && !window.location.pathname.includes('/docs')) {
+          // If loaded as raw uncompiled repository root on GitHub Pages, redirect to compiled docs/
+          window.addEventListener('DOMContentLoaded', function() {
+            var rawScript = document.querySelector('script[src*="main.tsx"]');
+            if (rawScript) {
+              var base = window.location.pathname.replace(/\/$/, '');
+              window.location.replace(base + '/docs/' + window.location.search + window.location.hash);
+            }
+          });
+        }
+      })();
+    </script>
   </head>
   <body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased selection:bg-purple-600 selection:text-white">
     <div id="root"></div>
